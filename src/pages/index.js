@@ -17,7 +17,7 @@ export default function Home({ movies }) {
 			<SearchTextWithFilter text='All result for "สุชาติ"' />
 
 			{new Array(10).fill(0).map((_, index) => (
-				<SearchPerson />
+				<SearchPerson key={index} />
 			))}
 		</Layout>
 	);
