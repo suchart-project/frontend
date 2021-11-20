@@ -13,7 +13,7 @@ export default function SearchPerson({ photoURL, userData: user }) {
 					className="w-28 h-28 rounded-xl"
 				/>
 				<div className="flex-1 h-28 mx-4 flex flex-col">
-					<a className="font-bold">
+					<a className="font-bold text-xl">
 						{user.firstName} {user.lastName}
 					</a>
 					<a>
