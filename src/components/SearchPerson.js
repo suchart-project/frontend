@@ -1,5 +1,5 @@
 import React from "react";
-
+// import Image from "next/image";w3
 export default function SearchPerson({ photoURL, userData: user }) {
 	user = user || { firstName: "Piyaphat", lastName: "Pinyo" };
 	return (
