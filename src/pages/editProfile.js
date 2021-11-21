@@ -44,7 +44,7 @@ export default function Home({ movies }) {
                             <InputBox id="postalCode" Name="Postal Code" />
 						</div>
 					</div>
-                    <div className="container bg-red">
+                    <div className="bg-blue-500">
                         Payment
                     </div>
                     
