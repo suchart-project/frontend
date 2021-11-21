@@ -14,7 +14,7 @@ export default function Home({ movies }) {
 			<SearchTextWithFilter text='All result for "สุชาติ"' />
 			<div className="divide-y divide-gray-200 ">
 				{new Array(10).fill(0).map((_, index) => (
-					<PatientHistory />
+					<PatientHistory key={index} />
 				))}
 			</div>
 		</Layout>
