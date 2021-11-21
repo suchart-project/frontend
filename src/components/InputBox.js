@@ -1,5 +1,5 @@
 import React from "react";
-export default function Modal({ id, placholder, Name, type, setData }) {
+export default function InputBox({ id, placholder, Name, type, setData }) {
 	const handleChange = (e) => {
 		setData((data) => ({ ...data, [e.target.id]: e.target.value }));
 	};
