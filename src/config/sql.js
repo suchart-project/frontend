@@ -1,9 +1,13 @@
 import { createConnection } from "mysql2/promise";
 
-const host = "34.124.158.163";
+// const host = "34.124.158.163";
+// const port = 3306;
+// const user = "user";
+// const password = "pass";
+const host = "localhost";
 const port = 3306;
-const user = "user";
-const password = "pass";
+const user = "root";
+const password = "a0832003423";
 const database = "se_project";
 let connection = null;
 
