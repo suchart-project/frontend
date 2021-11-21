@@ -11,7 +11,7 @@ export default function Home({ movies }) {
       <div className="divide-y divide-gray-200 ">
         {new Array(10).fill(0).map((_, index) => (
           <div key={index} className="mt-2">
-            <HistoryBox />
+            <HistoryBox destination="/request"/>
           </div>
         ))}
       </div>

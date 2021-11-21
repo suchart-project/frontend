@@ -33,7 +33,7 @@ export default function Home({ movies }) {
       <SelectPerson />
 
       <form
-        className="flex flex-col gap-6 "
+        className="flex flex-col gap-2 "
         onSubmit={(e) => {
           e.preventDefault();
           setModal(true);
