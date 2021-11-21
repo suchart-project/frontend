@@ -17,8 +17,8 @@ export default async function handler(req, res) {
 			);
 			return res.status(200).json(result);
 		}
-		const [users] = await connection.execute(
-			"select * from customers where username=?",
+		const [users] = await sqlConnection.execute(
+			"select * from CUSTOMER where username=?",
 			[username]
 		);
 		// if (!users) return res.status(404).json({ error: "No users found" });
