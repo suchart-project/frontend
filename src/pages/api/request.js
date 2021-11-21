@@ -10,25 +10,30 @@ export default async function handler(req, res) {
 		const { Patient_username, Doctor_username } = req.query;
 		if (Patient_username) {
 			const [result] = await sqlConnection.execute(
-				"select * from REQUEST where Patient_username=?",
+				"select Username,Firstname,Lastname from REQUEST r, CUSTOMER c where  r.Patient_username=? and c.Username = r.Patient_username",
 				[Patient_username]
 			);
 			return res.status(200).json(result);
 		}
 		if (Doctor_username) {
 			const [result] = await sqlConnection.execute(
-				"select * from REQUEST where Doctor_username=?",
+				"select Username,Firstname,Lastname from REQUEST r, CUSTOMER c where  r.Doctor_username=? and c.Username = r.Patient_username",
 				[Doctor_username]
 			);
 			return res.status(200).json(result);
 		}
-		const [result] = await sqlConnection.execute("select * from REQUEST");
+		const [result] = await sqlConnection.execute(
+			"select Username,Firstname,Lastname from REQUEST r, CUSTOMER c where c.Username = r.Patient_username"
+		);
 		return res.status(200).json(result);
 	}
 	if (req.method === "POST") {
 		// Usecase: patient request to physician
 		// TODO : <post> request
-		const { Message, Patient_username, Doctor_username } = req.body;
+		const { Message, Patient_username, Doctor_username } = JSON.parse(
+			req.body
+		);
+		console.log(req.body, Message, Patient_username, Doctor_username);
 		const id = uuid();
 		const [result] = await sqlConnection.execute(
 			"insert into REQUEST (Request_id,Message,Patient_username,Doctor_username) values (?,?,?,?)",

@@ -2,29 +2,42 @@ import Layout from "../components/Layout";
 import Back from "../components/Back";
 import SelectPerson from "../components/SelectPerson";
 import Modal from "../components/Modal";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import { fetcher } from "../config/config";
 import useSWR from "swr";
 import Spinner from "../components/Spinner";
 
-export default function Home({}) {
+export default function Home() {
 	const [showModal, setModal] = useState(false);
 	const [text, setText] = useState("");
 	const router = useRouter();
 	const { username } = router.query;
 
+	const handleSubmit = useCallback(async () => {
+		setModal(false);
+		try {
+			fetch("/api/request", {
+				method: "POST",
+				body: JSON.stringify({
+					Patient_username: "user003",
+					Message: text,
+					Doctor_username: username,
+				}),
+			});
+		} catch {
+			alert("Something went wrong");
+		} finally {
+			router.push("/requests");
+		}
+	}, [username]);
+
 	const { data, error } = useSWR("/api/user?username=" + username, fetcher);
-	if (error) return "Something went wrong";
+	if (error || data?.length == 0) return "Something went wrong";
 	if (!data) return <Spinner />;
 
-	const handleSubmit = () => {
-		setModal(false);
-		router.push("/requests");
-	};
-
 	return (
-		<Layout>
+		<>
 			{showModal && (
 				<Modal
 					callBack={handleSubmit}
@@ -34,10 +47,7 @@ export default function Home({}) {
 					showModal={showModal}
 				/>
 			)}
-			<Back />
-			<p className="text-blue-900 text-3xl font-bold text-center">
-				Fill in your symptoms
-			</p>
+
 			<a className="">คุณได้เลือกเข้ารับการปรึกษากับ :</a>
 
 			<SelectPerson user={data[0]} />
@@ -63,7 +73,7 @@ export default function Home({}) {
 					Submit
 				</button>
 			</form>
-		</Layout>
+		</>
 	);
 }
 
@@ -72,3 +82,15 @@ export async function getServerSideProps(context) {
 	if (!username) return { redirect: { destination: "/" } };
 	return { props: {} };
 }
+
+Home.getLayout = function getLayout(page) {
+	return (
+		<Layout>
+			<Back />
+			<p className="text-blue-900 text-3xl font-bold text-center">
+				Fill in your symptoms
+			</p>
+			{page}
+		</Layout>
+	);
+};
