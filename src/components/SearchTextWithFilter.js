@@ -7,17 +7,11 @@ export default function SearchTextWithFilter({ text }) {
 				<a className="text-xl ">{text}</a>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					className="h-6 w-6 text-gray-500"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
+					className="h-5 w-5 text-gray-500"
+					viewBox="0 0 20 20"
+					fill="currentColor"
 				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth={2}
-						d="M4 6h16M4 12h16M4 18h16"
-					/>
+					<path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
 				</svg>
 			</div>
 		)
