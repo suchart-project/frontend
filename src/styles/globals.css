@@ -9,11 +9,11 @@
 	}
 
 	.button {
-		@apply bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded;
+		@apply bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-xl;
 	}
 
 	.menu {
-		@apply hover:bg-indigo-400 p-2 rounded-md transition-all ease-linear cursor-pointer;
+		@apply hover:bg-indigo-400 p-2 rounded-md text-xl font-mono transition-all ease-linear cursor-pointer;
 	}
 
 	.icon {
