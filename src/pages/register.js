@@ -14,42 +14,33 @@ export default function Home({ movies }) {
 			<form onSubmit={handleSubmit}>
 				<div className="flex flex-col gap-6">
 					<div>
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="username"
-						>
+						<label className="block text-gray-700 text-sm font-bold mb-2">
 							Username
 						</label>
 						<input
-							class="textbox"
+							className="textbox"
 							id="username"
 							type="text"
 							placeholder="Username"
 						/>
 					</div>
 					<div>
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="password"
-						>
+						<label className="block text-gray-700 text-sm font-bold mb-2">
 							Password
 						</label>
 						<input
-							class="textbox"
+							className="textbox"
 							id="password"
 							type="text"
 							placeholder="Password"
 						/>
 					</div>
 					<div>
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="Confirm"
-						>
+						<label className="block text-gray-700 text-sm font-bold mb-2">
 							Confirm
 						</label>
 						<input
-							class="textbox"
+							className="textbox"
 							id="Confirm"
 							type="text"
 							placeholder="Confirm"
@@ -57,28 +48,22 @@ export default function Home({ movies }) {
 					</div>
 					<div className="flex flex-row gap-6">
 						<div className="flex-1">
-							<label
-								class="block text-gray-700 text-sm font-bold mb-2"
-								for="firstName"
-							>
+							<label className="block text-gray-700 text-sm font-bold mb-2">
 								ขื่อจริง
 							</label>
 							<input
-								class="textbox"
+								className="textbox"
 								id="firstName"
 								type="text"
 								placeholder="ชื่อจริง"
 							/>
 						</div>
 						<div className="flex-1">
-							<label
-								class="block text-gray-700 text-sm font-bold mb-2"
-								for="lastName"
-							>
+							<label className="block text-gray-700 text-sm font-bold mb-2">
 								นามสกุล
 							</label>
 							<input
-								class="textbox"
+								className="textbox"
 								id="lastName"
 								type="text"
 								placeholder="นามสกุล"
@@ -86,14 +71,11 @@ export default function Home({ movies }) {
 						</div>
 					</div>
 					<div>
-						<label
-							class="block text-gray-700 text-sm font-bold mb-2"
-							for="Email"
-						>
+						<label className="block text-gray-700 text-sm font-bold mb-2">
 							Email
 						</label>
 						<input
-							class="textbox"
+							className="textbox"
 							id="Email"
 							type="text"
 							placeholder="example@gmail.com"
