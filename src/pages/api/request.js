@@ -7,8 +7,12 @@ export default async function handler(req, res) {
 	if (req.method === "GET") {
 		// Usecase: patient or physician get request list of requests
 		// TODO : <get> all request
-
-		return;
+		const { username } = req.query;
+		const [users] = await connection.execute(
+			"select * from users where username=?",
+			[username]
+		);
+		return res.status(2000).json(users);
 	}
 	if (req.method === "POST") {
 		// Usecase: patient request to physician
