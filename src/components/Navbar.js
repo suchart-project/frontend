@@ -7,17 +7,15 @@ export default function Navbar() {
 	return (
 		<>
 			<div
-				className={`bg-indigo-500 w-3/4 md:w-64   text-gray-50 py-12 px-2 space-y-6 left-0 z-20 fixed inset-y-0 transform transition duration-300 ease-in-out ${
+				className={`bg-indigo-500 w-3/4 md:w-64  text-gray-50 py-12 px-2 space-y-6 left-0 z-20 fixed inset-y-0 transform transition duration-300 ease-in-out ${
 					isOpen ? "" : "-translate-x-full"
 				}`}
 			>
-				<div className="flex flex-col w-full p-2 gap-4 items-center justify-center">
-					<div className="items-center relative text-center  mb-6 w-full text-white text-3xl">
-						<a className=" font-bold  text-gray-50">Medmyday</a>
-
+				<div className="flex flex-col h-full justify-between">
+					<div className="flex flex-col w-full p-2 gap-4 items-center justify-center">
 						{isOpen && (
 							<div
-								className="menu absolute top-0 right-[-46px]  bg-indigo-500 hover:bg-indigo-500"
+								className="menu absolute top-6 right-[-36px]  bg-indigo-500 hover:bg-indigo-500"
 								onClick={toggle}
 							>
 								<svg
@@ -36,18 +34,34 @@ export default function Navbar() {
 								</svg>
 							</div>
 						)}
-					</div>
-					<Link href="/">
-						<div className="menu text-center w-full">Home</div>
-					</Link>
-					<Link href="/consulation">
-						<div className="menu text-center w-full">
-							consultation
+
+						<Link href="/">
+							<div className="menu text-left w-full">Home</div>
+						</Link>
+						<Link href="/consulation">
+							<div className="menu text-left w-full">
+								Consultation
+							</div>
+						</Link>
+						<Link href="/history">
+							<div className="menu text-left w-full">History</div>
+						</Link>
+						<div className="flex w-full flex-col justify-end ">
+							<Link href="/register">
+								<div className="self-end cursor-pointer hover:text-gray-200">
+									Register
+								</div>
+							</Link>
+							<Link href="/reset">
+								<div className="self-end cursor-pointer hover:text-gray-200">
+									Reset Password
+								</div>
+							</Link>
 						</div>
-					</Link>
-					<Link href="/history">
-						<div className="menu text-center w-full">History</div>
-					</Link>
+					</div>
+					<div className="items-center relative text-center  mb-6 w-full text-white text-3xl">
+						<a className=" font-bold  text-gray-50">Medmyday</a>
+					</div>
 				</div>
 			</div>
 			{isOpen && (

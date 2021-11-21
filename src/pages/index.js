@@ -22,14 +22,3 @@ export default function Home({ movies }) {
 		</Layout>
 	);
 }
-
-// export async function getServerSideProps(context) {
-// 	const { db } = await connectToDatabase();
-// 	db.collection("movies").insertOne({ title: "test" });
-// 	// const movies = await db.collection("movies").find({}).limit(20).toArray();
-
-// 	return {
-// 		// props: { movies: JSON.parse(JSON.stringify(movies)) },
-// 		props: { movies: [] },
-// 	};
-// }
