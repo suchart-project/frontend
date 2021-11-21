@@ -2,12 +2,16 @@ import React from "react";
 // import Image from "next/image";w3
 import { useRouter } from "next/router";
 import Link from "next/link";
-export default function SearchPerson({ photoURL, userData: user }) {
-	const router = useRouter();
+export default function SearchPerson({ photoURL, userData: user, uid }) {
 	user = user || { firstName: "Piyaphat", lastName: "Pinyo" };
 
 	return (
-		<Link href="/request">
+		<Link
+			href={{
+				pathname: "/request",
+				query: { uid },
+			}}
+		>
 			<div className="bg-white  rounded-md px-6 py-4  cursor-pointer shadow-md hover:brightness-105 hover:text-gray-600">
 				<div className="flex flex-row items-center">
 					<img

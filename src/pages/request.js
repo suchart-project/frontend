@@ -1,21 +1,28 @@
 import Layout from "../components/Layout";
 import Back from "../components/Back";
-import SearchPerson from "../components/SearchPerson";
+import SelectPerson from "../components/SelectPerson";
 import Modal from "../components/Modal";
 import { useState } from "react";
+import { useRouter } from "next/router";
 export default function Home({ movies }) {
 	const [showModal, setModal] = useState(false);
-	const handleSubmit = (e) => {
-		alert("เรียบร้อยฮะ");
+	const [data, setData] = useState("");
+	const router = useRouter();
+	const handleSubmit = () => {
+		setModal(false);
+		alert("ส่ง Request สำเร็จ");
+		router.push("/requests");
 	};
+
 	return (
 		<Layout>
 			{showModal && (
 				<Modal
 					callBack={handleSubmit}
 					title="แน่ใจหรือไม่ว่าจะส่งคำร้องขอ"
-					description="หากส่งคำร้องขอแล้วคุณจะไม่สามารถยกเลิกได้ และต้องรอจนกว่าแพทย์จะตอบรับถึงจะ"
+					description="เมื่อส่ง Request ไปหาแพทย์แล้วต้องรอจนกว่าจะถูกยอมรับจากแพทย์ ถึงจะได้เข้ารับการปรึกษา"
 					setModal={setModal}
+					showModal={showModal}
 				/>
 			)}
 			<Back />
@@ -23,7 +30,7 @@ export default function Home({ movies }) {
 				Fill in your syntoms
 			</p>
 			<a className="">คุณได้เลือกเข้ารับการปรึกษากับ :</a>
-			<SearchPerson />
+			<SelectPerson />
 			<a className="">อาการของท่าน :</a>
 			<form
 				className="flex flex-col gap-6 "
@@ -36,6 +43,8 @@ export default function Home({ movies }) {
 					type="text"
 					className="textbox h-32 "
 					placeholder="กรุณากรอกอาการของท่าน"
+					value={data}
+					onChange={(e) => setData(e.target.value)}
 				/>
 				<button className="button hover:ring-1 ring-indigo-300">
 					Submit
@@ -43,4 +52,10 @@ export default function Home({ movies }) {
 			</form>
 		</Layout>
 	);
+}
+
+export async function getServerSideProps(context) {
+	const { uid } = context.query;
+	if (!uid) return { redirect: { destination: "/" } };
+	return { props: {} };
 }

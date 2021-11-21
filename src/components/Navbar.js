@@ -38,7 +38,12 @@ export default function Navbar() {
 						<Link href="/">
 							<div className="menu text-left w-full">Home</div>
 						</Link>
-						<Link href="/consulation">
+						<Link href="/requests">
+							<div className="menu text-left w-full">
+								Requests
+							</div>
+						</Link>
+						<Link href="/consultation">
 							<div className="menu text-left w-full">
 								Consultation
 							</div>
