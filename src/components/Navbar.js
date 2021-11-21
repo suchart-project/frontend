@@ -7,7 +7,7 @@ export default function Navbar() {
 	return (
 		<>
 			<div
-				className={`bg-indigo-500 w-3/4 text-gray-50 py-7 px-2 space-y-6 left-0 z-10 absolute inset-y-0 transform transition duration-300 ease-in-out ${
+				className={`bg-indigo-500 w-3/4 md:w-64 text-gray-50 py-7 px-2 space-y-6 left-0 z-10 absolute inset-y-0 transform transition duration-300 ease-in-out ${
 					isOpen ? "" : "-translate-x-full"
 				}`}
 			>
