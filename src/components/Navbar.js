@@ -7,17 +7,17 @@ export default function Navbar() {
 	return (
 		<>
 			<div
-				className={`bg-indigo-500 w-3/4 md:w-64   text-gray-50 py-7 px-2 space-y-6 left-0 z-20 fixed inset-y-0 transform transition duration-300 ease-in-out ${
+				className={`bg-indigo-500 w-3/4 md:w-64   text-gray-50 py-12 px-2 space-y-6 left-0 z-20 fixed inset-y-0 transform transition duration-300 ease-in-out ${
 					isOpen ? "" : "-translate-x-full"
 				}`}
 			>
-				<div className="flex flex-col w-full p-2 gap-1 items-center justify-center">
+				<div className="flex flex-col w-full p-2 gap-4 items-center justify-center">
 					<div className="items-center relative text-center  mb-6 w-full text-white text-3xl">
 						<a className=" font-bold  text-gray-50">Medmyday</a>
 
 						{isOpen && (
 							<div
-								className="menu absolute top-0 right-[-50px] bg-indigo-500 hover:bg-indigo-500"
+								className="menu absolute top-0 right-[-46px]  bg-indigo-500 hover:bg-indigo-500"
 								onClick={toggle}
 							>
 								<svg
