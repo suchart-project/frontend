@@ -6,8 +6,8 @@ export default function SearchPerson({ photoURL, user }) {
 	return (
 		<Link
 			href={{
-				pathname: "/request",
-				query: { username: user?.Username },
+				pathname: "/doctor",
+				query: { Username: user?.Username },
 			}}
 		>
 			<div className="bg-white  rounded-md px-6 py-4  cursor-pointer shadow-md hover:brightness-105 hover:text-gray-600">

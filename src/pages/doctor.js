@@ -10,16 +10,19 @@ import Spinner from "../components/Spinner";
 
 export default function Home() {
 	const [showModal, setModal] = useState(false);
+	const [text, setText] = useState("");
 	const router = useRouter();
-	const { Request_id } = router.query;
+	const { Username } = router.query;
 
 	const handleSubmit = useCallback(async () => {
 		setModal(false);
 		try {
 			fetch("/api/request", {
-				method: "DELETE",
+				method: "POST",
 				body: JSON.stringify({
-					Request_id,
+					Patient_username: "user003",
+					Message: text,
+					Doctor_username: Username,
 				}),
 			});
 		} catch {
@@ -27,12 +30,9 @@ export default function Home() {
 		} finally {
 			router.push("/requests");
 		}
-	}, [Request_id]);
+	}, [Username, text]);
 
-	const { data, error } = useSWR(
-		"/api/request?Request_id=" + Request_id,
-		fetcher
-	);
+	const { data, error } = useSWR("/api/user?username=" + Username, fetcher);
 	if (error || data?.length == 0) return "Something went wrong";
 	if (!data) return <Spinner />;
 
@@ -49,7 +49,7 @@ export default function Home() {
 			)}
 
 			<a className="">คุณได้เลือกเข้ารับการปรึกษากับ :</a>
-			{/* {JSON.stringify(data)} */}
+
 			<SelectPerson user={data[0]} />
 
 			<form
@@ -66,8 +66,8 @@ export default function Home() {
 					type="text"
 					className="textbox h-32 "
 					placeholder="กรุณากรอกอาการของท่าน"
-					disabled
-					value={data[0].Message}
+					value={text}
+					onChange={(e) => setText(e.target.value)}
 				/>
 				<button className="button hover:ring-1 ring-indigo-300">
 					Submit
@@ -78,8 +78,8 @@ export default function Home() {
 }
 
 export async function getServerSideProps(context) {
-	const { Request_id } = context.query;
-	if (!Request_id) return { redirect: { destination: "/" } };
+	const { Username } = context.query;
+	if (!Username) return { redirect: { destination: "/" } };
 	return { props: {} };
 }
 
@@ -88,7 +88,7 @@ Home.getLayout = function getLayout(page) {
 		<Layout>
 			<Back />
 			<p className="text-blue-900 text-3xl font-bold text-center">
-				Request Information
+				Fill in your symptoms
 			</p>
 			{page}
 		</Layout>

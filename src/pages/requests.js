@@ -13,7 +13,7 @@ export default function Home() {
 			<div className="divide-y divide-gray-200 ">
 				{data.map((item, index) => (
 					<div key={index} className="mt-2">
-						<HistoryBox user={item} />
+						<HistoryBox destination="/request" user={item} />
 					</div>
 				))}
 			</div>
