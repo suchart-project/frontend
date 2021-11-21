@@ -32,7 +32,7 @@ export async function connectToDatabase() {
 		console.log("Not connected to MongoDB");
 	}
 
-	const db = await client.db(dbName);
+	const db = client.db(dbName);
 
 	cachedClient = client;
 	cachedDb = db;
