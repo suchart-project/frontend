@@ -2,9 +2,7 @@ import React from "react";
 // import Image from "next/image";w3
 import { useRouter } from "next/router";
 import Link from "next/link";
-export default function SearchPerson({ photoURL, userData: user, uid }) {
-	user = user || { firstName: "Piyaphat", lastName: "Pinyo" };
-
+export default function SearchPerson({ photoURL, user }) {
 	return (
 		<div className="bg-white  rounded-md px-6 py-4  shadow-md ">
 			<div className="flex flex-row items-center">
@@ -17,16 +15,16 @@ export default function SearchPerson({ photoURL, userData: user, uid }) {
 				/>
 				<div className="flex-1  mx-4 overflow-x-hidden  h-26 flex flex-col">
 					<a className="font-bold text-md">
-						{user.firstName} {user.lastName}
+						{user?.Firstname} {user?.Lastname}
 					</a>
 					<a className="text-sm  ">
-						{user.firstName} {user.lastName}
+						{user?.Firstname} {user?.Lastname}
 					</a>
 					<a className="text-sm ">
-						{user.firstName} {user.lastName}
+						{user?.Firstname} {user?.Lastname}
 					</a>
 					<a className="text-sm ">
-						{user.firstName} {user.lastName}
+						{user?.Firstname} {user?.Lastname}
 					</a>
 					<a
 						className="self-end text-sm text-gray-500 hover:text-gray-300"
