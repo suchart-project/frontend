@@ -21,9 +21,7 @@ export default function Home({}) {
 		alert("สมัครสมาชิกสำเร็จ");
 		router.push("/login");
 	};
-	const handleChange = (e) => {
-		setdata({ ...data, [e.target.id]: e.target.value });
-	};
+
 	return (
 		<Layout>
 			<Back />

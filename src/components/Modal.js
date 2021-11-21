@@ -2,22 +2,11 @@ import React from "react";
 
 export default function Modal({ setModal, title, description, callBack }) {
 	return (
-		<div
-			className="fixed z-10 inset-0 overflow-y-auto"
-			ariaLabelledby="modal-title"
-			role="dialog"
-			ariaModal="true"
-		>
+		<div className="fixed z-10 inset-0 overflow-y-auto">
 			<div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-				<div
-					className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-					ariaHidden="true"
-				></div>
+				<div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-				<span
-					className="hidden sm:inline-block sm:align-middle sm:h-screen"
-					ariaHidden="true"
-				>
+				<span className="hidden sm:inline-block sm:align-middle sm:h-screen">
 					&#8203;
 				</span>
 
