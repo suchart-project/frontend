@@ -8,7 +8,7 @@ export default function SearchPerson({ photoURL, userData: user }) {
 
 	return (
 		<Link href="/request">
-			<div className="bg-white  rounded-md px-6 py-4 drop-shadow-sm cursor-pointer hover:shadow-md hover:brightness-105 hover:text-gray-600">
+			<div className="bg-white  rounded-md px-6 py-4  cursor-pointer shadow-md hover:brightness-105 hover:text-gray-600">
 				<div className="flex flex-row items-center">
 					<img
 						src={

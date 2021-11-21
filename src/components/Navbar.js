@@ -12,26 +12,30 @@ export default function Navbar() {
 				}`}
 			>
 				<div className="flex flex-col w-full p-2 gap-1 items-center justify-center">
-					<div className="flex items-center mb-6 w-full text-white text-3xl">
-						<div className=" flex-1 font-bold text-gray-50">
-							<a>Medmyday</a>
-						</div>
-						<div className="menu" onClick={toggle}>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-6 w-6 "
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
+					<div className="items-center relative text-center  mb-6 w-full text-white text-3xl">
+						<a className=" font-bold  text-gray-50">Medmyday</a>
+
+						{isOpen && (
+							<div
+								className="menu absolute top-0 right-[-50px] bg-indigo-500 hover:bg-indigo-500"
+								onClick={toggle}
 							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M10 19l-7-7m0 0l7-7m-7 7h18"
-								/>
-							</svg>
-						</div>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M15 19l-7-7 7-7"
+									/>
+								</svg>
+							</div>
+						)}
 					</div>
 					<Link href="/">
 						<div className="menu text-center w-full">Home</div>
@@ -53,10 +57,10 @@ export default function Navbar() {
 				></div>
 			)}
 			<div>
-				<div className="icon w-10 text-gray-500" onClick={toggle}>
+				<div className="icon w-12 text-gray-500" onClick={toggle}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						className="h-6 w-6"
+						className="h-8 w-8"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke="currentColor"
