@@ -3,15 +3,17 @@ import Navbar from "../components/Navbar";
 import SearchPerson from "../components/SearchPerson";
 import SearchTextWithFilter from "../components/SearchTextWithFilter";
 import { useState } from "react";
+import useSWR from "swr";
+import Spinner from "../components/Spinner";
+import { fetcher } from "../config/config";
 export default function Home({}) {
 	const [filterOption, setFilterOption] = useState({});
+	const { data, error } = useSWR("/api/user", fetcher);
+	if (error) return "Something went wrong";
+	if (!data) return <Spinner />;
+
 	return (
-		<Layout>
-			<Navbar />
-			<p className="text-blue-900 text-3xl font-bold text-center">
-				Search physicians
-			</p>
-			{JSON.stringify(filterOption, null, 2)}
+		<>
 			<input
 				className="textbox"
 				placeholder="ค้นหาแพทย์ โดย ชื่อ / อาการ / คลินิค"
@@ -20,10 +22,21 @@ export default function Home({}) {
 				text='All result for "สุชาติ"'
 				setFilter={setFilterOption}
 			/>
-
-			{new Array(10).fill("aaaa").map((uid, index) => (
-				<SearchPerson key={index} uid={uid} />
+			{data.map((user, index) => (
+				<SearchPerson key={index} user={user} />
 			))}
-		</Layout>
+		</>
 	);
 }
+
+Home.getLayout = function getLayout(page) {
+	return (
+		<Layout>
+			<Navbar />
+			<p className="text-blue-900 text-3xl font-bold text-center">
+				Search physicians
+			</p>
+			{page}
+		</Layout>
+	);
+};
