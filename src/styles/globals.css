@@ -13,6 +13,10 @@
 	}
 
 	.menu {
-		@apply hover:bg-indigo-400 p-2 rounded-md transition-all ease-linear;
+		@apply hover:bg-indigo-400 p-2 rounded-md transition-all ease-linear cursor-pointer;
+	}
+
+	.icon {
+		@apply text-black  font-bold hover:bg-gray-200  rounded-md p-2;
 	}
 }

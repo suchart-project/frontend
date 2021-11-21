@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import Navbar from "../components/Navbar";
+import Back from "../components/Back";
 import SearchPerson from "../components/SearchPerson";
 export default function Home({ movies }) {
 	const handleSubmit = (e) => {
@@ -8,7 +8,7 @@ export default function Home({ movies }) {
 	};
 	return (
 		<Layout>
-			<Navbar />
+			<Back />
 			<p className="text-blue-900 text-3xl font-bold text-center">
 				Fill in your syntoms
 			</p>
@@ -16,7 +16,7 @@ export default function Home({ movies }) {
 			<SearchPerson />
 			<a className="">อาการของท่าน :</a>
 			<form className="flex flex-col gap-6 " onSubmit={handleSubmit}>
-				<textarea type="text" className="textbox h-64 " />
+				<textarea type="text" className="textbox h-32 " />
 				<button className="button hover:ring-1 ring-indigo-300">
 					Submit
 				</button>

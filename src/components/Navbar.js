@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Link from "next/link";
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -7,7 +7,7 @@ export default function Navbar() {
 	return (
 		<>
 			<div
-				className={`bg-indigo-500 w-3/4 md:w-64 text-gray-50 py-7 px-2 space-y-6 left-0 z-10 absolute inset-y-0 transform transition duration-300 ease-in-out ${
+				className={`bg-indigo-500 w-3/4 md:w-64   text-gray-50 py-7 px-2 space-y-6 left-0 z-20 fixed inset-y-0 transform transition duration-300 ease-in-out ${
 					isOpen ? "" : "-translate-x-full"
 				}`}
 			>
@@ -33,15 +33,27 @@ export default function Navbar() {
 							</svg>
 						</div>
 					</div>
-					<div className="menu text-center w-full">Menu1</div>
-					<div className="menu text-center w-full">Menu2</div>
+					<Link href="/">
+						<div className="menu text-center w-full">Home</div>
+					</Link>
+					<Link href="/consulation">
+						<div className="menu text-center w-full">
+							consultation
+						</div>
+					</Link>
+					<Link href="/history">
+						<div className="menu text-center w-full">History</div>
+					</Link>
 				</div>
 			</div>
-			<div>
+			{isOpen && (
 				<div
-					className="text-black  font-bold hover:bg-gray-200  rounded-md p-2 w-10"
+					className="fixed w-full h-screen inset-y-0  inset-x-0 z-10 "
 					onClick={toggle}
-				>
+				></div>
+			)}
+			<div>
+				<div className="icon w-10 text-gray-500" onClick={toggle}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						className="h-6 w-6"
