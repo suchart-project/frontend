@@ -22,6 +22,10 @@ export default function Home({}) {
 		router.push("/login");
 	};
 
+	const handleChange = (e) => {
+		setData((data) => ({ ...data, [e.target.id]: e.target.value }));
+	};
+
 	return (
 		<Layout>
 			<Back />
