@@ -19,4 +19,8 @@
 	.icon {
 		@apply text-black  font-bold hover:bg-gray-200  rounded-md p-2;
 	}
+
+	.filter {
+		@apply rounded-md p-1;
+	}
 }
