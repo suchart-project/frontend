@@ -1,8 +1,6 @@
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import SearchPerson from "../components/SearchPerson";
-import SearchTextWithFilter from "../components/SearchTextWithFilter";
-import { connectToDatabase } from "../config/mongo";
 export default function Home({ movies }) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -25,14 +23,4 @@ export default function Home({ movies }) {
 			</form>
 		</Layout>
 	);
-}
-
-export async function getServerSideProps(context) {
-	const { db } = await connectToDatabase();
-
-	const movies = await db.collection("movies").find({}).limit(20).toArray();
-
-	return {
-		props: { movies: JSON.parse(JSON.stringify(movies)) },
-	};
 }

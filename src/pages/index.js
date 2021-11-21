@@ -2,7 +2,6 @@ import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import SearchPerson from "../components/SearchPerson";
 import SearchTextWithFilter from "../components/SearchTextWithFilter";
-import { connectToDatabase } from "../config/mongo";
 
 export default function Home({ movies }) {
 	return (
@@ -24,12 +23,13 @@ export default function Home({ movies }) {
 	);
 }
 
-export async function getServerSideProps(context) {
-	const { db } = await connectToDatabase();
+// export async function getServerSideProps(context) {
+// 	const { db } = await connectToDatabase();
+// 	db.collection("movies").insertOne({ title: "test" });
+// 	// const movies = await db.collection("movies").find({}).limit(20).toArray();
 
-	const movies = await db.collection("movies").find({}).limit(20).toArray();
-
-	return {
-		props: { movies: JSON.parse(JSON.stringify(movies)) },
-	};
-}
+// 	return {
+// 		// props: { movies: JSON.parse(JSON.stringify(movies)) },
+// 		props: { movies: [] },
+// 	};
+// }
