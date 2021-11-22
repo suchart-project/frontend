@@ -1,12 +1,13 @@
 import Layout from "../components/Layout";
 import Back from "../components/Back";
 import SelectPerson from "../components/SelectPerson";
-import Modal from "../components/Modal";
+import ModalRed from "../components/ModalRed";
 import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import { fetcher } from "../config/config";
 import useSWR from "swr";
 import Spinner from "../components/Spinner";
+import Link from "next/link";
 
 export default function Home() {
 	const [showModal, setModal] = useState(false);
@@ -16,6 +17,7 @@ export default function Home() {
 	const handleSubmit = useCallback(async () => {
 		setModal(false);
 		try {
+			console.log(Request_id);
 			fetch("/api/request", {
 				method: "DELETE",
 				body: JSON.stringify({
@@ -39,17 +41,16 @@ export default function Home() {
 	return (
 		<>
 			{showModal && (
-				<Modal
+				<ModalRed
 					callBack={handleSubmit}
-					title="แน่ใจหรือไม่ว่าจะส่งคำร้องขอ"
-					description="เมื่อส่ง Request ไปหาแพทย์แล้วต้องรอจนกว่าจะถูกยอมรับจากแพทย์ ถึงจะได้เข้ารับการปรึกษา"
+					title="คุณแน่ใจหรือไม่ว่าจะต้องการจะยกเลิก"
 					setModal={setModal}
 					showModal={showModal}
 				/>
 			)}
 
 			<a className="">คุณได้เลือกเข้ารับการปรึกษากับ :</a>
-			{/* {JSON.stringify(data[0])} */}
+			{/* {JSON.stringify(data)} */}
 			<SelectPerson user={data[0]} />
 
 			<form
@@ -69,8 +70,8 @@ export default function Home() {
 					disabled
 					value={data[0].Message}
 				/>
-				<button className="button hover:ring-1 ring-indigo-300">
-					Submit
+				<button className="button hover:bg-red-700 ring-red-300 bg-red-500">
+					Decline
 				</button>
 			</form>
 		</>
