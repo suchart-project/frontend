@@ -1,6 +1,6 @@
 import React from "react";
 // import Image from "next/image";w3
-import { useRouter } from "next/router";
+import SelectPerson from "./SelectPerson";
 import Link from "next/link";
 export default function SearchPerson({ photoURL, user }) {
 	return (
@@ -14,7 +14,7 @@ export default function SearchPerson({ photoURL, user }) {
 				<div className="flex flex-row items-center">
 					<img
 						src={
-							photoURL ||
+							user.Img_path ||
 							"https://www.travelswithsun.com/wp-content/uploads/Animation-Square-At-Movie-Animation-Park-Studios-Theme-Park.jpg"
 						}
 						className="w-24 h-24 rounded-md object-cover"
@@ -23,20 +23,16 @@ export default function SearchPerson({ photoURL, user }) {
 						<a className="font-bold text-md">
 							{user?.Firstname} {user?.Lastname}
 						</a>
-						<a className="text-sm  ">
-							{user?.Firstname} {user?.Lastname}
-						</a>
+						<a className="text-sm  ">{user?.Name}</a>
+						<a className="text-sm ">คลินิค: {user?.Clinic_name}</a>
 						<a className="text-sm ">
-							{user?.Firstname} {user?.Lastname}
-						</a>
-						<a className="text-sm ">
-							{user?.Firstname} {user?.Lastname}
+							คะแนนเฉลี่ย {user?.Avg_rating}
 						</a>
 						<a
 							className="self-end text-sm text-gray-500 hover:text-gray-300"
 							onClick={(e) => {
 								e.preventDefault();
-								alert("aa");
+								alert("ยังไม่เปิดใช้บริการ");
 							}}
 						>
 							ดูรายละเอียดเพิ่มเติม..

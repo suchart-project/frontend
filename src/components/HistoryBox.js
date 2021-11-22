@@ -12,7 +12,10 @@ export default function PatientHistory({ user, destination }) {
 		>
 			<div className="flex flex-row my-2 items-center hover:bg-gray-200 p-4 rounded-sm transform duration-50 ease-linear hover:rounded-3xl hover:text-gray-700">
 				<img
-					src="https://i.pinimg.com/736x/0d/f5/8d/0df58d6e21f7236ffc4cabbde43ec03b.jpg"
+					src={
+						user.Img_path ||
+						"https://i.pinimg.com/736x/0d/f5/8d/0df58d6e21f7236ffc4cabbde43ec03b.jpg"
+					}
 					className="bg-cover rounded-full w-24 h-24"
 				/>
 				<div className="flex w-full overflow-hidden">

@@ -11,10 +11,16 @@ export default async function handler(req, res) {
 		// TODO : use a lot of queries to get physician that relate to search text
 		const { Username } = req.query;
 		if (!Username) {
-			const [result] = await sqlConnection.execute(
-				"select Username,Firstname,Lastname from CUSTOMER where TYPE=?",
-				["DOCTOR"]
-			);
+			const [result] = await sqlConnection.execute(`
+                SELECT d.Username, c.Firstname, c.Lastname, c.Coordinate, c.Img_path, cn.Clinic_name, d.Total_patients, d.Avg_rating, d.Price_min, d.Price_max, d.Price_avg, s.Name
+                FROM DOCTOR d
+                NATURAL JOIN CUSTOMER c
+                JOIN CLINIC cn ON d.Clinic_id = cn.Clinic_id
+                JOIN DOCTOR_SPECIALTY ds ON d.Username = ds.Username
+                JOIN SPECIALTY s ON ds.Specialty_id = s.Specialty_id
+                WHERE c.Type = 'DOCTOR'
+                ORDER BY Avg_rating DESC;         
+            `);
 			return res.status(200).json(result);
 		}
 		const [users] = await sqlConnection.execute(

@@ -2,8 +2,11 @@ import Layout from "../../components/Layout";
 import Navbar from "../../components/Navbar";
 import InputBox from "../../components/InputBox";
 import Link from "next/link";
-
+import { useRouter } from "next/router";
 export default function Home() {
+	const router = useRouter();
+	const { Username } = router.query;
+	const { data, error } = useSWR("/api/user?username=" + Username, fetcher);
 	return (
 		<Layout>
 			<Navbar />

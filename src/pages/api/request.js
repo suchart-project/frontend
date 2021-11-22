@@ -10,7 +10,7 @@ export default async function handler(req, res) {
 		const { Patient_username, Doctor_username, Request_id } = req.query;
 		if (Request_id) {
 			const [result] = await sqlConnection.execute(
-				"select Username,Firstname,Lastname,Request_id,Message from REQUEST r, CUSTOMER c where  r.Request_id=? and c.Username = r.Patient_username",
+				"select * from REQUEST r, CUSTOMER c where  r.Request_id=? and c.Username = r.Doctor_username",
 				[Request_id]
 			);
 			return res.status(200).json(result);
@@ -18,20 +18,20 @@ export default async function handler(req, res) {
 
 		if (Patient_username) {
 			const [result] = await sqlConnection.execute(
-				"select Username,Firstname,Lastname,Request_id,Message from REQUEST r, CUSTOMER c where  r.Patient_username=? and c.Username = r.Patient_username",
+				"select * from REQUEST r, CUSTOMER c where  r.Patient_username=? and c.Username = r.Doctor_username",
 				[Patient_username]
 			);
 			return res.status(200).json(result);
 		}
 		if (Doctor_username) {
 			const [result] = await sqlConnection.execute(
-				"select Username,Firstname,Lastname,Request_id,Message from REQUEST r, CUSTOMER c where  r.Doctor_username=? and c.Username = r.Patient_username",
+				"select * from REQUEST r, CUSTOMER c where  r.Doctor_username=? and c.Username = r.Doctor_username",
 				[Doctor_username]
 			);
 			return res.status(200).json(result);
 		}
 		const [result] = await sqlConnection.execute(
-			"select Username,Firstname,Lastname,Request_id,Message from REQUEST r, CUSTOMER c where c.Username = r.Patient_username"
+			"select * from REQUEST r, CUSTOMER c where c.Username = r.Patient_username"
 		);
 		return res.status(200).json(result);
 	}
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
 	if (req.method === "DELETE") {
 		// Usecase: patient delete his request
 		// TODOO: <delete>  delete request if user cancle request
-		const { Request_id } = req.body;
+		const { Request_id } = JSON.parse(req.body);
 		const [result] = await sqlConnection.execute(
 			"delete from REQUEST where Request_id=?",
 			[Request_id]

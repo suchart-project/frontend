@@ -1,18 +1,21 @@
-import Layout from "../components/Layout";
-import Navbar from "../components/Navbar";
-import HistoryBox from "../components/HistoryBox";
+import Layout from "../../components/Layout";
+import Navbar from "../../components/Navbar";
+import HistoryBox from "../../components/HistoryBox";
 import useSWR from "swr";
-import Spinner from "../components/Spinner";
-import { fetcher } from "../config/config";
+import Spinner from "../../components/Spinner";
+import { fetcher } from "../../config/config";
 export default function Home() {
-	const { data, error } = useSWR("/api/request?Patient_id=user003", fetcher);
+	const { data, error } = useSWR(
+		"/api/request?Doctor_username=user001",
+		fetcher
+	);
 	if (error) return "Something went wrong";
 	if (!data) return <Spinner />;
 	return (
 		<div className="divide-y divide-gray-200 ">
-			{new Array(10).fill(0).map((_, index) => (
+			{data.map((item, index) => (
 				<div key={index} className="md-2">
-					<HistoryBox destination="/doctor/request" />
+					<HistoryBox destination="/doctor/request" user={item} />
 				</div>
 			))}
 		</div>
