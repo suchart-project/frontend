@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import SearchPerson from "../components/SearchPerson";
-import SearchPersonLoading from "../components/Skeleton/SearchPersonLoad";
+import SearchPersonLoad from "../components/skeleton/SearchPersonLoad";
 import SearchTextWithFilter from "../components/SearchTextWithFilter";
 import { useState, useCallback, useEffect } from "react";
 
@@ -81,7 +81,7 @@ export default function Home({}) {
 			{!users || users.length === 0
 				? new Array(10)
 						.fill(0)
-						.map((_, index) => <SearchPersonLoading key={index} />)
+						.map((_, index) => <SearchPersonLoad key={index} />)
 				: users.map((user, index) => (
 						<SearchPerson key={index} user={user} />
 				  ))}

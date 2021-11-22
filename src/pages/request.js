@@ -6,8 +6,7 @@ import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import { fetcher } from "../config/config";
 import useSWR from "swr";
-import Spinner from "../components/Spinner";
-import SearchPersonLoad from "../components/Skeleton/SearchPersonLoad";
+import SearchPersonLoad from "../components/skeleton/SearchPersonLoad";
 
 export default function Home() {
 	const [showModal, setModal] = useState(false);
