@@ -32,7 +32,7 @@ export default function Home() {
 		}
 	}, [Username, text]);
 
-	const { data, error } = useSWR("/api/user?username=" + Username, fetcher);
+	const { data, error } = useSWR("/api/user?Username=" + Username, fetcher);
 	if (error || data?.length == 0) return "Something went wrong";
 	if (!data) return <Spinner />;
 

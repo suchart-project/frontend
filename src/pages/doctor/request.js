@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar";
 import InputBox from "../../components/InputBox";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 export default function Home() {
 	const router = useRouter();
 	const { Username } = router.query;
