@@ -76,6 +76,13 @@ export default async function handler(req, res) {
 				patient: result[0].Patient_username,
 				pay_amount: 0,
 				status: 0,
+				payment: [],
+				chatroom: {
+					call_count: 0,
+					call_minutes: 0,
+					chats: [],
+					videoCalls: [],
+				},
 				start_time: new Date(),
 			});
 		}
