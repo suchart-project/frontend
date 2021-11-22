@@ -20,7 +20,7 @@ export default function Home() {
 		return Math.abs(age_dt.getUTCFullYear() - 1970);
 	};
 	if (error || data?.length == 0) return "Something went wrong";
-	if (!data) return <Spinner />;
+	if (!data) return null;
 	const handleSubmit = async (order) => {
 		console.log(order);
 		try {
@@ -43,77 +43,81 @@ export default function Home() {
 		}
 	};
 	return (
-		<Layout>
-			<Navbar />
-			<form>
-				<div className="flex flex-col gap-6">
-					<InputBox
-						disabled
-						id="name"
-						Name="Name"
-						value={data[0].Firstname}
-					/>
-					<InputBox
-						disabled
-						id="surname"
-						Name="Surname"
-						value={data[0].Lastname}
-					/>
-					<div className="flex flex-row gap-6">
-						<div className="flex-1">
-							<InputBox
-								disabled
-								id="age"
-								Name="Age"
-								value={calculate_age(
-									new Date(data[0].Birthdate)
-								)}
-							/>
-						</div>
-						<div className="flex-1">
-							<InputBox
-								disabled
-								id="gender"
-								Name="Gender"
-								value={data[0].Gender}
-							/>
-						</div>
-					</div>
-					<div>
-						<label
+		<form>
+			<div className="flex flex-col gap-6">
+				<InputBox
+					disabled
+					id="name"
+					Name="Name"
+					value={data[0].Firstname}
+				/>
+				<InputBox
+					disabled
+					id="surname"
+					Name="Surname"
+					value={data[0].Lastname}
+				/>
+				<div className="flex flex-row gap-6">
+					<div className="flex-1">
+						<InputBox
 							disabled
-							className="block text-gray-700 text-sm font-bold mb-2"
-						>
-							Symptoms
-						</label>
-						<textarea
-							disabled
-							type="text"
-							className="textbox h-32 "
-							value={data[0].Message}
-							onChange={(e) => setData(e.target.value)}
+							id="age"
+							Name="Age"
+							value={calculate_age(new Date(data[0].Birthdate))}
 						/>
 					</div>
-					<button
-						className="button hover:bg-green-700 bg-green-500"
-						onClick={(e) => {
-							handleSubmit("Accept");
-							e.preventDefault();
-						}}
-					>
-						Accept
-					</button>
-					<button
-						className="button hover:bg-red-700 bg-red-500"
-						onClick={(e) => {
-							e.preventDefault();
-							handleSubmit("Decline");
-						}}
-					>
-						Decline
-					</button>
+					<div className="flex-1">
+						<InputBox
+							disabled
+							id="gender"
+							Name="Gender"
+							value={data[0].Gender}
+						/>
+					</div>
 				</div>
-			</form>
-		</Layout>
+				<div>
+					<label
+						disabled
+						className="block text-gray-700 text-sm font-bold mb-2"
+					>
+						Symptoms
+					</label>
+					<textarea
+						disabled
+						type="text"
+						className="textbox h-32 "
+						value={data[0].Message}
+						onChange={(e) => setData(e.target.value)}
+					/>
+				</div>
+				<button
+					className="button hover:bg-green-700 bg-green-500"
+					onClick={(e) => {
+						handleSubmit("Accept");
+						e.preventDefault();
+					}}
+				>
+					Accept
+				</button>
+				<button
+					className="button hover:bg-red-700 bg-red-500"
+					onClick={(e) => {
+						e.preventDefault();
+						handleSubmit("Decline");
+					}}
+				>
+					Decline
+				</button>
+			</div>
+		</form>
 	);
 }
+
+Home.getLayout = function getLayout(page) {
+	return (
+		<Layout>
+			<Navbar />
+			{page}
+		</Layout>
+	);
+};

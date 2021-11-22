@@ -7,11 +7,11 @@ export default async function handler(req, res) {
 	const { connection: sqlConnection } = await sql();
 
 	if (req.method === "GET") {
-        // Usecase: patient search for physician
-        // TODO : use a lot of queries to get physician that relate to search text
-        let { SearchStr, OnlineFlag, DistanceFlag } = req.query;
-        if (!SearchStr) {
-            const [result] = await sqlConnection.execute(`
+		// Usecase: patient search for physician
+		// TODO : use a lot of queries to get physician that relate to search text
+		let { SearchStr, OnlineFlag, DistanceFlag } = req.query;
+		if (!SearchStr) {
+			const [result] = await sqlConnection.execute(`
                 SELECT d.Username, c.Firstname, c.Lastname, c.Coordinate, c.Img_path, cn.Clinic_name, d.Total_patients, d.Avg_rating, d.Price_min, d.Price_max, d.Price_avg, s.Name
                 FROM DOCTOR d
                 NATURAL JOIN CUSTOMER c
@@ -21,19 +21,20 @@ export default async function handler(req, res) {
                 WHERE c.Type = 'DOCTOR'
                 ORDER BY Avg_rating DESC;
             `);
-            return res.status(200).json(result);
-        }
-        OnlineFlag = (OnlineFlag === 'true');
-        DistanceFlag = (DistanceFlag === 'true');
-        const [users] = await sqlConnection.execute(
-            `
+
+			return res.status(200).json(result);
+		}
+		OnlineFlag = OnlineFlag === "true";
+		DistanceFlag = DistanceFlag === "true";
+		const [users] = await sqlConnection.execute(
+			`
                 CALL SearchDoctorsIncludeSpecialties(?, current_timestamp, ?, ?, ?, ?);
             `,
-            [SearchStr, 100.509349, 13.782778, OnlineFlag, DistanceFlag]
-        );
-        // if (!users) return res.status(404).json({ error: "No users found" });
-        return res.status(200).json(users);
-    }
+			[SearchStr, 100.509349, 13.782778, OnlineFlag, DistanceFlag]
+		);
+		// if (!users) return res.status(404).json({ error: "No users found" });
+		return res.status(200).json(users);
+	}
 	// if (req.method === "POST") {
 	// 	const { name, email, password } = req.body;
 	// 	if (!name || !email || !password)

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-export default function PatientHistory({ user, destination }) {
+export default function HistoryBox({ user, destination }) {
 	const { Firstname, Lastname, Username, Request_id } = user;
 	destination = destination || "/";
 	return (

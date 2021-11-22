@@ -23,4 +23,20 @@
 	.filter {
 		@apply rounded-md p-1;
 	}
+
+	.skel-1 {
+		@apply bg-gray-300  h-4 w-1/4;
+	}
+
+	.skel-2 {
+		@apply bg-gray-300  h-4 w-1/2;
+	}
+
+	.skel-3 {
+		@apply bg-gray-300  h-4 w-3/4;
+	}
+
+	.skel-4 {
+		@apply bg-gray-300  h-4 w-full;
+	}
 }

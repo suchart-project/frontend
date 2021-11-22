@@ -6,7 +6,7 @@ import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import { fetcher } from "../config/config";
 import useSWR from "swr";
-import Spinner from "../components/Spinner";
+import SearchPersonLoad from "../components/skeleton/SearchPersonLoad";
 
 export default function Home() {
 	const [showModal, setModal] = useState(false);
@@ -38,7 +38,6 @@ export default function Home() {
 
 	const { data, error } = useSWR("/api/user?Username=" + Username, fetcher);
 	if (error || data?.length == 0) return "Something went wrong";
-	if (!data) return <Spinner />;
 
 	return (
 		<>
@@ -54,7 +53,11 @@ export default function Home() {
 
 			<a className="">คุณได้เลือกเข้ารับการปรึกษากับ :</a>
 
-			<SelectPerson user={data[0]} />
+			{!data || data.lenght == 0 ? (
+				<SearchPersonLoad />
+			) : (
+				<SelectPerson user={data[0]} />
+			)}
 
 			<form
 				className="flex flex-col gap-6 "

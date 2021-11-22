@@ -1,16 +1,27 @@
 import Layout from "../../components/Layout";
 import Navbar from "../../components/Navbar";
-import HistoryBox from "../../components/HistoryBox";
+
 import useSWR from "swr";
-import Spinner from "../../components/Spinner";
+import HistoryBox from "../../components/HistoryBox";
 import { fetcher } from "../../config/config";
+import ConsultationLoad from "../../components/skeleton/ConsultationLoad";
 export default function Home() {
 	const { data, error } = useSWR(
 		"/api/request?Doctor_username=user001",
 		fetcher
 	);
 	if (error) return "Something went wrong";
-	if (!data) return <Spinner />;
+	if (!data)
+		return (
+			<div className="divide-y divide-gray-200 ">
+				{new Array(5).fill(0).map((_, index) => (
+					<div key={index} className="mt-2">
+						<ConsultationLoad />
+					</div>
+				))}
+			</div>
+		);
+
 	return (
 		<div className="divide-y divide-gray-200 ">
 			{data.map((item, index) => (

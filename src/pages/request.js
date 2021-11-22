@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { fetcher } from "../config/config";
 import useSWR from "swr";
 import Spinner from "../components/Spinner";
+import SearchPersonLoad from "../components/Skeleton/SearchPersonLoad";
 
 export default function Home() {
 	const [showModal, setModal] = useState(false);
@@ -38,7 +39,6 @@ export default function Home() {
 		fetcher
 	);
 	if (error || data?.length == 0) return "Something went wrong";
-	if (!data) return <Spinner />;
 
 	return (
 		<>
@@ -53,8 +53,12 @@ export default function Home() {
 
 			<a className="">คุณได้เลือกเข้ารับการปรึกษากับ :</a>
 			{/* {JSON.stringify(data[0])} */}
-			<SelectPerson user={data[0]} />
 
+			{!data || data.lenght == 0 ? (
+				<SearchPersonLoad />
+			) : (
+				<SelectPerson user={data[0]} />
+			)}
 			<form
 				className="flex flex-col gap-6 "
 				onSubmit={(e) => {
@@ -70,7 +74,7 @@ export default function Home() {
 					className="textbox h-32 "
 					placeholder="กรุณากรอกอาการของท่าน"
 					disabled
-					value={data[0].Message}
+					value={data ? data[0].Message : ""}
 				/>
 				<button className="button hover:bg-red-700 ring-red-300 bg-red-500">
 					Cancel

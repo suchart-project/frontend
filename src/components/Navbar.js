@@ -11,7 +11,10 @@ export default function Navbar() {
 					isOpen ? "" : "-translate-x-full"
 				}`}
 			>
-				<div className="flex flex-col h-full justify-between">
+				<div
+					className="flex flex-col h-full justify-between"
+					onClick={toggle}
+				>
 					<div className="flex flex-col w-full p-2 gap-4 items-center justify-center">
 						{isOpen && (
 							<div
