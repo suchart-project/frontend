@@ -9,6 +9,14 @@ export default async function handler(req, res) {
 		// TODO : <get> all request
 		const { Patient_username, Doctor_username, Request_id, select } =
 			req.query;
+
+		if (Request_id && select) {
+			const [result] = await sqlConnection.execute(
+				"select * from REQUEST r, CUSTOMER c where  r.Request_id=? and c.Username = r.Patient_username",
+				[Request_id]
+			);
+			return res.status(200).json(result);
+		}
 		if (Request_id) {
 			const [result] = await sqlConnection.execute(
 				"select * from REQUEST r, CUSTOMER c where  r.Request_id=? and c.Username = r.Doctor_username",
@@ -17,13 +25,6 @@ export default async function handler(req, res) {
 			return res.status(200).json(result);
 		}
 
-		if (Request_id && select == "patient") {
-			const [result] = await sqlConnection.execute(
-				"select * from REQUEST r, CUSTOMER c where  r.Request_id=? and c.Username = r.Patient_username",
-				[Request_id]
-			);
-			return res.status(200).json(result);
-		}
 		if (Patient_username) {
 			const [result] = await sqlConnection.execute(
 				"select * from REQUEST r, CUSTOMER c where  r.Patient_username=? and c.Username = r.Doctor_username",
@@ -33,7 +34,7 @@ export default async function handler(req, res) {
 		}
 		if (Doctor_username) {
 			const [result] = await sqlConnection.execute(
-				"select * from REQUEST r, CUSTOMER c where  r.Doctor_username=? and c.Username = r.Doctor_username",
+				"select * from REQUEST r, CUSTOMER c where  r.Doctor_username=? and c.Username =  r.Patient_username",
 				[Doctor_username]
 			);
 			return res.status(200).json(result);
@@ -65,6 +66,13 @@ export default async function handler(req, res) {
 			"update REQUEST set Status=? where Request_id=?",
 			[Status, Request_id]
 		);
+		if (Status === 1) {
+			const [result] = await sqlConnection.execute(
+				"select Patient_username,Doctor_username,Request_id from REQUEST where Request_id=?",
+				[Request_id]
+			);
+			db.collection("CONSULTATION").insertOne({});
+		}
 		return res.status(200).json(result);
 	}
 	if (req.method === "DELETE") {

@@ -16,7 +16,7 @@ export default function Home() {
 	return (
 		<Layout>
 			<Navbar />
-			{JSON.stringify(data, null, 2)}
+
 			<form
 			// onSubmit={handleSubmit}
 			>
