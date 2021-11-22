@@ -7,7 +7,6 @@ import { useRouter } from "next/router";
 import { fetcher } from "../config/config";
 import useSWR from "swr";
 import Spinner from "../components/Spinner";
-import Link from "next/link";
 
 export default function Home() {
 	const [showModal, setModal] = useState(false);
@@ -50,7 +49,7 @@ export default function Home() {
 			)}
 
 			<a className="">คุณได้เลือกเข้ารับการปรึกษากับ :</a>
-			{/* {JSON.stringify(data)} */}
+			{JSON.stringify(data[0])}
 			<SelectPerson user={data[0]} />
 
 			<form

@@ -7,7 +7,8 @@ export default async function handler(req, res) {
 	if (req.method === "GET") {
 		// Usecase: patient or physician get request list of requests
 		// TODO : <get> all request
-		const { Patient_username, Doctor_username, Request_id } = req.query;
+		const { Patient_username, Doctor_username, Request_id, select } =
+			req.query;
 		if (Request_id) {
 			const [result] = await sqlConnection.execute(
 				"select * from REQUEST r, CUSTOMER c where  r.Request_id=? and c.Username = r.Doctor_username",
@@ -16,6 +17,13 @@ export default async function handler(req, res) {
 			return res.status(200).json(result);
 		}
 
+		if (Request_id && select == "patient") {
+			const [result] = await sqlConnection.execute(
+				"select * from REQUEST r, CUSTOMER c where  r.Request_id=? and c.Username = r.Patient_username",
+				[Request_id]
+			);
+			return res.status(200).json(result);
+		}
 		if (Patient_username) {
 			const [result] = await sqlConnection.execute(
 				"select * from REQUEST r, CUSTOMER c where  r.Patient_username=? and c.Username = r.Doctor_username",
