@@ -47,9 +47,8 @@ export default async function handler(req, res) {
 	if (req.method === "POST") {
 		// Usecase: patient request to physician
 		// TODO : <post> request
-		const { Message, Patient_username, Doctor_username } = JSON.parse(
-			req.body
-		);
+		const { Message, Patient_username, Doctor_username } = req.body;
+
 		console.log(req.body, Message, Patient_username, Doctor_username);
 		const id = uuid();
 		const [result] = await sqlConnection.execute(
@@ -61,16 +60,16 @@ export default async function handler(req, res) {
 	if (req.method === "PUT") {
 		// Usecase: physician accept or decline request
 		// TODO: <update> request and create Consultation if accepted
-		console.log(req.body);
+		// console.log(req.body);
 		const { Status, Request_id } = req.body;
 		const [result] = await sqlConnection.execute(
 			"update REQUEST set Status=? where Request_id=?",
 			[Status, Request_id]
 		);
-		console.log(Status, Request_id);
+
 		if (Status === 1) {
 			const [result] = await sqlConnection.execute(
-				"select Patient_username,Doctor_username,Request_id from REQUEST where Request_id=?",
+				"select Patient_username,Doctor_username,Request_id,Firstname,Lastname,Message from REQUEST r , CUSTOMER c where r.Request_id=? and c.Username=r.Doctor_username",
 				[Request_id]
 			);
 			mongoConnection.collection("Consultation").insertOne({
@@ -79,6 +78,11 @@ export default async function handler(req, res) {
 				pay_amount: 0,
 				status: 0,
 				payment: [],
+				doctor: {
+					Firstname: result[0].Firstname,
+					Lastname: result[0].Lastname,
+				},
+				message: result[0].Message,
 				chatroom: {
 					call_count: 0,
 					call_minutes: 0,
@@ -93,7 +97,7 @@ export default async function handler(req, res) {
 	if (req.method === "DELETE") {
 		// Usecase: patient delete his request
 		// TODOO: <delete>  delete request if user cancle request
-		const { Request_id } = JSON.parse(req.body);
+		const { Request_id } = req.body;
 		const [result] = await sqlConnection.execute(
 			"delete from REQUEST where Request_id=?",
 			[Request_id]

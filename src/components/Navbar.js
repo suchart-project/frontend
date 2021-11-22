@@ -43,9 +43,9 @@ export default function Navbar() {
 								Requests
 							</div>
 						</Link>
-						<Link href="/consultation">
+						<Link href="/consultations">
 							<div className="menu text-left w-full">
-								Consultation
+								Consultations
 							</div>
 						</Link>
 						<Link href="/doctor/requests">

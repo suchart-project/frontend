@@ -24,6 +24,10 @@ export default function Home() {
 					Message: text,
 					Doctor_username: Username,
 				}),
+				headers: {
+					"Content-Type": "application/json",
+					// 'Content-Type': 'application/x-www-form-urlencoded',
+				},
 			});
 		} catch {
 			alert("Something went wrong");
