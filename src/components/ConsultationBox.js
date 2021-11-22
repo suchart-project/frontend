@@ -18,12 +18,18 @@ export default function ConsultationBox({ user, destination }) {
 					}
 					className="bg-cover rounded-full w-24 h-24"
 				/>
-				<div className="flex w-full overflow-hidden">
-					<div className="font-bold ml-3 ">{doctor?.Firstname}</div>
-					<div className="font-bold ml-3">{doctor?.Lastname}</div>
-				</div>
-				<div className="flex w-full overflow-hidden text-sm text-gray-600">
-					{new Date(start_time).toLocaleTimeString()}
+				<div className=" ml-3  flex w-full flex-col">
+					<div className="flex w-full overflow-hidden">
+						<div className="font-bold ">{doctor?.Firstname}</div>
+						<div className="font-bold  ml-3">
+							{doctor?.Lastname}
+						</div>
+						<div className="ml-1 overflow-hidden  self-center text-xs text-gray-600">
+							{"(" +
+								new Date(start_time).toLocaleTimeString() +
+								")"}
+						</div>
+					</div>
 				</div>
 				<div>
 					<div className="icon w-10">
