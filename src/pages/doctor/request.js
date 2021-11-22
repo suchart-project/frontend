@@ -2,11 +2,9 @@ import Layout from "../../components/Layout";
 import Navbar from "../../components/Navbar";
 import InputBox from "../../components/InputBox";
 import useSWR from "swr";
-import Link from "next/link";
 import { fetcher } from "../../config/config";
 import { useRouter } from "next/router";
 
-import { useState, useEffect, useCallback } from "react";
 import Spinner from "../../components/Spinner";
 
 export default function Home() {
@@ -43,10 +41,6 @@ export default function Home() {
   return (
     <Layout>
       <Navbar />
-      {data && data.length !== 0
-        ? console.log(new Date(data[0].Birthdate))
-        : ""}
-
       <form>
         <div className="flex flex-col gap-6">
           <InputBox disabled id="name" Name="Name" value={data[0].Firstname} />
