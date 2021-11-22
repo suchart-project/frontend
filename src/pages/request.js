@@ -49,7 +49,7 @@ export default function Home() {
 			)}
 
 			<a className="">คุณได้เลือกเข้ารับการปรึกษากับ :</a>
-			{JSON.stringify(data[0])}
+			{/* {JSON.stringify(data[0])} */}
 			<SelectPerson user={data[0]} />
 
 			<form

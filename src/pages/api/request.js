@@ -61,7 +61,7 @@ export default async function handler(req, res) {
 	if (req.method === "PUT") {
 		// Usecase: physician accept or decline request
 		// TODO: <update> request and create Consultation if accepted
-		const { Status, Request_id } = req.body;
+		const { Status, Request_id } = JSON.parse(req.body);
 		const [result] = await sqlConnection.execute(
 			"update REQUEST set Status=? where Request_id=?",
 			[Status, Request_id]
@@ -71,7 +71,13 @@ export default async function handler(req, res) {
 				"select Patient_username,Doctor_username,Request_id from REQUEST where Request_id=?",
 				[Request_id]
 			);
-			db.collection("CONSULTATION").insertOne({});
+			db.collection("CONSULTATION").insertOne({
+				physician: result[0].Doctor_username,
+				patient: result[0].Patient_username,
+				pay_amount: 0,
+				status: 0,
+				start_time: new Date(),
+			});
 		}
 		return res.status(200).json(result);
 	}

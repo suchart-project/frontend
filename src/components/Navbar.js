@@ -48,8 +48,8 @@ export default function Navbar() {
 								Consultation
 							</div>
 						</Link>
-						<Link href="/history">
-							<div className="menu text-left w-full">History</div>
+						<Link href="/doctor/requests">
+							<div className="menu text-left w-full">Doctor</div>
 						</Link>
 						<div className="flex w-full flex-col justify-end ">
 							<Link href="/register">
