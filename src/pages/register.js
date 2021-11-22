@@ -1,7 +1,7 @@
-import Layout from "../components/Layout";
-import Back from "../components/Back";
-import { useState } from "react";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import Back from "../components/Back";
+import Layout from "../components/Layout";
 
 export default function Home({}) {
 	const [data, setdata] = useState({});

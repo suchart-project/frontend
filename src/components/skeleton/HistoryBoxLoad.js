@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 export default function PatientHistory() {
 	return (
 		<div className="flex animate-pulse  h-32 flex-row my-2 items-center p-4 rounded-sm ">

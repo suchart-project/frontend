@@ -1,9 +1,9 @@
+import { useCallback, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
 import SearchPerson from "../components/SearchPerson";
-import SearchPersonLoad from "../components/skeleton/SearchPersonLoad";
 import SearchTextWithFilter from "../components/SearchTextWithFilter";
-import { useState, useCallback, useEffect } from "react";
+import SearchPersonLoad from "../components/skeleton/SearchPersonLoad";
 
 export default function Home({}) {
 	const [filterOption, setFilterOption] = useState({

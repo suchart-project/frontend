@@ -1,10 +1,10 @@
-import Layout from "../../components/Layout";
-import Navbar from "../../components/Navbar";
-
 import useSWR from "swr";
 import HistoryBox from "../../components/HistoryBox";
-import { fetcher } from "../../config/config";
+import Layout from "../../components/Layout";
+import Navbar from "../../components/Navbar";
 import ConsultationLoad from "../../components/skeleton/ConsultationLoad";
+import { fetcher } from "../../config/config";
+
 export default function Home() {
 	const { data, error } = useSWR(
 		"/api/request?Doctor_username=user001",

@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 export default function HistoryBox({ user, destination }) {
 	const { Firstname, Lastname, Username, Request_id } = user;
 	destination = destination || "/";

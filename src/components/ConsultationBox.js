@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 export default function ConsultationBox({ user, destination }) {
 	const { doctor, Username, Consultation_id, start_time } = user;
 	destination = destination || "/";

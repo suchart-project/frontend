@@ -1,5 +1,13 @@
 import React from "react";
-export default function InputBox({ id, placholder, Name, type, setData,disabled,value }) {
+export default function InputBox({
+	id,
+	placholder,
+	Name,
+	type,
+	setData,
+	disabled,
+	value,
+}) {
 	const handleChange = (e) => {
 		setData((data) => ({ ...data, [e.target.id]: e.target.value }));
 	};

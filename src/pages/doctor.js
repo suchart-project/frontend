@@ -1,12 +1,12 @@
-import Layout from "../components/Layout";
-import Back from "../components/Back";
-import SelectPerson from "../components/SelectPerson";
-import Modal from "../components/Modal";
-import { useState, useCallback } from "react";
 import { useRouter } from "next/router";
-import { fetcher } from "../config/config";
+import { useCallback, useState } from "react";
 import useSWR from "swr";
+import Back from "../components/Back";
+import Layout from "../components/Layout";
+import Modal from "../components/Modal";
+import SelectPerson from "../components/SelectPerson";
 import SearchPersonLoad from "../components/skeleton/SearchPersonLoad";
+import { fetcher } from "../config/config";
 
 export default function Home() {
 	const [showModal, setModal] = useState(false);

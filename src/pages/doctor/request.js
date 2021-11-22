@@ -1,11 +1,9 @@
-import Layout from "../../components/Layout";
-import Navbar from "../../components/Navbar";
-import InputBox from "../../components/InputBox";
-import useSWR from "swr";
-import { fetcher } from "../../config/config";
 import { useRouter } from "next/router";
-
-import Spinner from "../../components/Spinner";
+import useSWR from "swr";
+import Back from "../../components/Back";
+import InputBox from "../../components/InputBox";
+import Layout from "../../components/Layout";
+import { fetcher } from "../../config/config";
 
 export default function Home() {
 	const router = useRouter();
@@ -116,7 +114,7 @@ export default function Home() {
 Home.getLayout = function getLayout(page) {
 	return (
 		<Layout>
-			<Navbar />
+			<Back />
 			{page}
 		</Layout>
 	);

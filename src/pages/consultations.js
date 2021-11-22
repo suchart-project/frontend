@@ -1,9 +1,8 @@
+import useSWR from "swr";
+import ConsultationBox from "../components/ConsultationBox";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
-import ConsultationBox from "../components/ConsultationBox";
 import ConsultationLoad from "../components/skeleton/ConsultationLoad";
-import useSWR from "swr";
-import Spinner from "../components/Spinner";
 import { fetcher } from "../config/config";
 
 export default function Home() {
