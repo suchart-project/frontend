@@ -20,7 +20,6 @@ export default function Home() {
 	if (error || data?.length == 0) return "Something went wrong";
 	if (!data) return null;
 	const handleSubmit = async (order) => {
-		console.log(order);
 		try {
 			fetch("/api/request", {
 				method: "PUT",
