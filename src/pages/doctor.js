@@ -13,14 +13,14 @@ export default function Home() {
 	const [text, setText] = useState("");
 	const router = useRouter();
 	const { Username } = router.query;
-
+	const Patient_username = window.localStorage.getItem("Patient_username");
 	const handleSubmit = useCallback(async () => {
 		setModal(false);
 		try {
 			fetch("/api/request", {
 				method: "POST",
 				body: JSON.stringify({
-					Patient_username: "user003",
+					Patient_username,
 					Message: text,
 					Doctor_username: Username,
 				}),
