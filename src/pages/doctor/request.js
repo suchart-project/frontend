@@ -9,7 +9,7 @@ export default function Home() {
 	const router = useRouter();
 	const { Request_id } = router.query;
 	const { data, error } = useSWR(
-		"/api/request?Request_id" + Request_id,
+		"/api/request?select=Patient&Request_id=" + Request_id,
 		fetcher
 	);
 	const calculate_age = (dob) => {

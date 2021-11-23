@@ -49,7 +49,7 @@ export default async function handler(req, res) {
 		// TODO : <post> request
 		const { Message, Patient_username, Doctor_username } = req.body;
 
-		console.log(req.body, Message, Patient_username, Doctor_username);
+		// console.log(req.body, Message, Patient_username, Doctor_username);
 		const id = uuid();
 		const [result] = await sqlConnection.execute(
 			"insert into REQUEST (Request_id,Message,Patient_username,Doctor_username) values (?,?,?,?)",
