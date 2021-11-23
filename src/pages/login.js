@@ -11,12 +11,6 @@ export default function Home() {
 	const [Patient_username, setPatient] = useState(
 		window.localStorage.getItem("Patient_username")
 	);
-	if (typeof window !== "undefined") {
-		if (!window.localStorage.getItem("Doctor_username")) {
-			window.localStorage.setItem("Doctor_username", "user003");
-			window.localStorage.setItem("Patient_username", "user001");
-		}
-	}
 
 	const handleDoctor = (e) => {
 		e.preventDefault();
