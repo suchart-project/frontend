@@ -1,5 +1,6 @@
-[LINK TO DEPLOYMENT](https://frontend-nphoaaygb-se-medmyday.vercel.app)
-[LINK TO WEBSITE](https://frontend-phi-nine.vercel.app)
+<!-- [LINK TO DEPLOYMENT](https://frontend-nphoaaygb-se-medmyday.vercel.app) -->
+
+[LINK TO WEBSITE](https://medmyday.vercel.app/)
 
 ## Getting Started
 
