@@ -6,8 +6,10 @@ import useSWR from "swr";
 
 import { fetcher } from "../config/config";
 export default function Home() {
+	const Patient_username = window.localStorage.getItem("Patient_username");
+
 	const { data, error } = useSWR(
-		"/api/request?Patient_username=user003",
+		"/api/request?Patient_username=" + Patient_username,
 		fetcher
 	);
 	if (error) return "Something went wrong";
@@ -21,6 +23,15 @@ export default function Home() {
 				))}
 			</div>
 		);
+	if (data.length === 0) {
+		return (
+			<div className="text-center text-gray-500">
+				{"No record found (updated at " +
+					new Date().toLocaleTimeString() +
+					")"}
+			</div>
+		);
+	}
 	return (
 		<div>
 			<div className="divide-y divide-gray-200 ">
