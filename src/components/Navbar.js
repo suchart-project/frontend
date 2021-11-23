@@ -55,14 +55,14 @@ export default function Navbar() {
 							<div className="menu text-left w-full">Doctor</div>
 						</Link>
 						<div className="flex w-full flex-col justify-end ">
+							<Link href="/login">
+								<div className="self-end cursor-pointer hover:text-gray-200">
+									login
+								</div>
+							</Link>
 							<Link href="/register">
 								<div className="self-end cursor-pointer hover:text-gray-200">
 									Register
-								</div>
-							</Link>
-							<Link href="/reset">
-								<div className="self-end cursor-pointer hover:text-gray-200">
-									Reset Password
 								</div>
 							</Link>
 						</div>
