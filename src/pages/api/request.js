@@ -72,7 +72,7 @@ export default async function handler(req, res) {
 				"select Patient_username,Doctor_username,Request_id,Firstname,Lastname,Message from REQUEST r , CUSTOMER c where r.Request_id=? and c.Username=r.Doctor_username",
 				[Request_id]
 			);
-			mongoConnection.collection("Consultation").insertOne({
+			await mongoConnection.collection("Consultation").insertOne({
 				physician: result[0].Doctor_username,
 				patient: result[0].Patient_username,
 				pay_amount: 0,

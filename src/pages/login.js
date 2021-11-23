@@ -16,16 +16,19 @@ export default function Home() {
 		e.preventDefault();
 		const value = e.target.value;
 		setDoctor(value);
-		if (typeof window !== "undefined") {
-			window.localStorage.setItem("Doctor_username", value);
-		}
 	};
 	const handlePatient = (e) => {
 		e.preventDefault();
 		const value = e.target.value;
 		setPatient(value);
+	};
+	const handleSave = () => {
 		if (typeof window !== "undefined") {
-			window.localStorage.setItem("Patient_username", e.target.value);
+			window.localStorage.setItem("Patient_username", Patient_username);
+			window.localStorage.setItem("Doctor_username", Doctor_username);
+			alert("บันทึกสำเร็จ");
+		} else {
+			alert("ไม่สามารถบันทึกสถานะได้");
 		}
 	};
 	if (!data) return <p>Loading...</p>;
@@ -62,6 +65,9 @@ export default function Home() {
 					</option>
 				))}
 			</select>
+			<button className="button" onClick={handleSave}>
+				Save
+			</button>
 		</>
 	);
 }
