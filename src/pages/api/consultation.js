@@ -5,10 +5,11 @@ export default async function handler(req, res) {
 	const { connection: sqlConnection } = await sql();
 
 	if (req.method === "GET") {
+		const { Username } = req.query;
 		// Usecase: patient or physic get consulation
 		const result = await mongoConnection
 			.collection("Consultation")
-			.find({})
+			.find({ $or: [{ Patient: Username }, { Physic: Username }] })
 			.toArray();
 
 		return res.status(200).json(result);
