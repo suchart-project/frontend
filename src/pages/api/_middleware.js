@@ -1,4 +1,6 @@
+const counter = { request: 0 };
 export function middleware(req, ev) {
-	console.log("Got request");
+	counter.request += 1;
+	console.log(counter);
 	return;
 }
