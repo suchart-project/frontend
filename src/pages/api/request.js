@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 		}
 		if (Request_id) {
 			const [result] = await sqlConnection.execute(
-				"select * from REQUEST r, CUSTOMER c,DOCTOR d,CLINIC cl where r.Status=0 and  r.Request_id=? and c.Username = r.Doctor_username and d.Username = r.Doctor_username and d.Clinic_id = cl.Clinic_id ",
+				"select * from REQUEST r, CUSTOMER c,DOCTOR d,CLINIC cl where r.Request_id=? and  r.Status=0   and c.Username = r.Doctor_username and d.Username = r.Doctor_username and d.Clinic_id = cl.Clinic_id ",
 				[Request_id]
 			);
 			return res.status(200).json(result);

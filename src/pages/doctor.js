@@ -17,7 +17,7 @@ export default function Home() {
 	const handleSubmit = useCallback(async () => {
 		setModal(false);
 		try {
-			fetch("/api/request", {
+			await fetch("/api/request", {
 				method: "POST",
 				body: JSON.stringify({
 					Patient_username,

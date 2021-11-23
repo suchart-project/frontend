@@ -16,7 +16,7 @@ export default function Home() {
 	const handleSubmit = useCallback(async () => {
 		setModal(false);
 		try {
-			fetch("/api/request", {
+			await fetch("/api/request", {
 				method: "DELETE",
 				body: JSON.stringify({
 					Request_id,
