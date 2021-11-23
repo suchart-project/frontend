@@ -6,7 +6,11 @@ import ConsultationLoad from "../components/skeleton/ConsultationLoad";
 import { fetcher } from "../config/config";
 
 export default function Home() {
-	const { data, error } = useSWR("/api/consultation", fetcher);
+	const Username = localStorage.getItem("Patient_username");
+	const { data, error } = useSWR(
+		"/api/consultation?Username=" + Username,
+		fetcher
+	);
 	if (error) return "Something went wrong";
 	if (!data)
 		return (
@@ -16,6 +20,15 @@ export default function Home() {
 				))}
 			</>
 		);
+	if (data.length === 0) {
+		return (
+			<div className="text-center text-gray-500">
+				{"No record found (updated at " +
+					new Date().toLocaleTimeString() +
+					")"}
+			</div>
+		);
+	}
 	return (
 		<>
 			{data.map((item, index) => (
