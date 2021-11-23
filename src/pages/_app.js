@@ -10,18 +10,19 @@ function MyApp({ Component, pageProps }) {
 		if (!window.localStorage.getItem("Patient_username")) {
 			window.localStorage.setItem("Patient_username", "user003");
 		}
-	}
 
-	return (
-		<>
-			<Head>
-				<title>Med My Day</title>
-				<meta name="theme-color" content="#6366f1" />
-			</Head>
-			{getLayout(<Component {...pageProps} />)}
-		</>
-	);
-	return "Loading...";
+		return (
+			<>
+				<Head>
+					<title>Med My Day</title>
+					<meta name="theme-color" content="#6366f1" />
+				</Head>
+				{getLayout(<Component {...pageProps} />)}
+			</>
+		);
+	} else {
+		return "Loading...";
+	}
 }
 
 export default MyApp;
