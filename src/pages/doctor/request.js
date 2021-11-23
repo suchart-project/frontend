@@ -36,7 +36,7 @@ export default function Home() {
 			print();
 			alert("Something went wrong");
 		} finally {
-			router.push("/doctor/requests");
+			router.push("/consulations");
 		}
 	};
 	return (
