@@ -6,8 +6,9 @@ import ConsultationLoad from "../../components/skeleton/ConsultationLoad";
 import { fetcher } from "../../config/config";
 
 export default function Home() {
+	const Doctor_username = window.localStorage.getItem("Doctor_username");
 	const { data, error } = useSWR(
-		"/api/request?Doctor_username=user001",
+		"/api/request?Doctor_username=" + Doctor_username,
 		fetcher
 	);
 	if (error) return "Something went wrong";
@@ -21,6 +22,16 @@ export default function Home() {
 				))}
 			</div>
 		);
+
+	if (data.length === 0) {
+		return (
+			<div className="text-center text-gray-500">
+				{"No record found (updated at " +
+					new Date().toLocaleTimeString() +
+					")"}
+			</div>
+		);
+	}
 
 	return (
 		<div className="divide-y divide-gray-200 ">
