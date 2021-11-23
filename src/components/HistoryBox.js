@@ -10,7 +10,7 @@ export default function HistoryBox({ user, destination }) {
 				query: { Request_id },
 			}}
 		>
-			<div className="flex flex-row my-2 items-center hover:bg-gray-200 p-4 rounded-sm transform duration-50 ease-linear hover:rounded-3xl hover:text-gray-700">
+			<div className="flex flex-row my-2 items-center  hover:brightness-105 hover:scale-105 transition-all hover:bg-gray-200 p-4 rounded-sm transform duration-50 ease-linear hover:rounded-3xl hover:text-gray-700">
 				<img
 					src={
 						user.Img_path ||
