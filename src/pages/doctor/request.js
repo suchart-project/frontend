@@ -21,7 +21,7 @@ export default function Home() {
 	if (!data) return null;
 	const handleSubmit = async (order) => {
 		try {
-			fetch("/api/request", {
+			await fetch("/api/request", {
 				method: "PUT",
 				body: JSON.stringify({
 					Request_id: Request_id,
@@ -36,7 +36,7 @@ export default function Home() {
 			print();
 			alert("Something went wrong");
 		} finally {
-			router.push("/consulations");
+			router.push("/consultations");
 		}
 	};
 	return (

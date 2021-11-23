@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 		// Usecase: patient or physic get consulation
 		const result = await mongoConnection
 			.collection("Consultation")
-			.find({ $or: [{ Patient: Username }, { Physic: Username }] })
+			.find({ $or: [{ patient: Username }, { physician: Username }] })
 			.toArray();
 
 		return res.status(200).json(result);
