@@ -44,11 +44,19 @@ export default async function handler(req, res) {
 
 		OnlineFlag = OnlineFlag === "true";
 		DistanceFlag = DistanceFlag === "true";
+		const { Lat, Lng } = req.query;
+		console.log(Lat, Lng);
 		const [users] = await sqlConnection.execute(
 			`
                 CALL SearchDoctorsIncludeSpecialties(?, current_timestamp, ?, ?, ?, ?);
             `,
-			[SearchStr, 100.509349, 13.782778, OnlineFlag, DistanceFlag]
+			[
+				SearchStr,
+				Lat || 100.509349,
+				Lng || 13.782778,
+				OnlineFlag,
+				DistanceFlag,
+			]
 		);
 		// if (!users) return res.status(404).json({ error: "No users found" });
 		return res.status(200).json(users);
