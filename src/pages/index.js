@@ -16,7 +16,7 @@ export default function Home({}) {
 	const [users, setUsers] = useState([]);
 
 	useState(() => {
-		if (filterOption.Location && "geolocation" in navigator) {
+		if ("geolocation" in navigator) {
 			navigator.geolocation.getCurrentPosition(function (position) {
 				setLocation({
 					lat: position.coords.latitude,

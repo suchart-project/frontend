@@ -52,8 +52,8 @@ export default async function handler(req, res) {
             `,
 			[
 				SearchStr,
-				Lat || 100.509349,
-				Lng || 13.782778,
+				Lng || 100.509349,
+				Lat || 13.782778,
 				OnlineFlag,
 				DistanceFlag,
 			]
