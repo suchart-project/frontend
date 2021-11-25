@@ -85,6 +85,7 @@ export default function Home({}) {
 		},
 		[filterOption]
 	);
+
 	return (
 		<>
 			<form
@@ -101,11 +102,19 @@ export default function Home({}) {
 					ref={input_textbox}
 				/>
 			</form>
+
 			<SearchTextWithFilter
 				text={text ? `All result for "${text}"` : null}
 				setFilter={setFilterOption}
 			/>
-			{!users || users.length === 0
+			{users?.length === 0 && (
+				<div className="text-center text-gray-500">
+					{"No record found (updated at " +
+						new Date().toLocaleTimeString() +
+						")"}
+				</div>
+			)}
+			{!users
 				? new Array(10)
 						.fill(0)
 						.map((_, index) => <SearchPersonLoad key={index} />)
