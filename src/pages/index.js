@@ -13,7 +13,7 @@ export default function Home({}) {
 		Location: false,
 	});
 	const [location, setLocation] = useState({ lat: 0, lng: 0 });
-	const [users, setUsers] = useState([]);
+	const [users, setUsers] = useState(null);
 
 	useState(() => {
 		if ("geolocation" in navigator) {
